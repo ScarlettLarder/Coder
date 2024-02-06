@@ -1,0 +1,78 @@
+
+:root {
+    background-color: #FBFBFE;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: #0B3953;
+}
+
+body {
+    font-family: 'IBM Plex Sans', sans-serif;  
+    text-decoration: none;
+}
+h1 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Libre Barcode 128 Text', system-ui;
+    color: #0B3953;
+    font-size: 3rem;
+}
+
+.navbar {
+    position: sticky;
+    margin: 0%;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    top: 0%;
+    display: flex;
+    background-color: #9EE7CC;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav_title {
+    padding: 15px;
+}
+
+.nav_heading {
+    align-items: center;
+}
+
+.nav_heading {
+    display: flex;
+    gap: 30px;
+    padding-right: 30px;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.nav_apply {
+    background-color: #FFD5FB;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+a:link { 
+    text-decoration: none; 
+    color: #0B3953;
+
+  } 
+  a:visited { 
+    text-decoration: none; 
+    color: #0B3953;
+  } 
+  a:hover { 
+    text-decoration: none; 
+    color: #0B3953;
+  } 
+  a:active { 
+    text-decoration: none; 
+    color: #0B3953;
+  }
