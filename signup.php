@@ -21,7 +21,7 @@
             <h3 class="text-5xl pt-9 pl-5">Sign up</h3>
             <br>
             <div class="pl-5">
-                <form class="" action="/action_page.php">
+                <form class="" action="scripts\signup_script.php">
                     <label>What is your first and last name? &#40;28 limit Required&#41;</label><br>
                     <input class="rounded-md border-2 border-green-800"  type="text" id="name" name="name" required><br><br>
                     <label for="lname">Password? &#40;28 limit Required&#41;</label><br>

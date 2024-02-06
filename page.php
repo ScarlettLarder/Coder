@@ -1,3 +1,7 @@
+<?php 
+    include ("scripts\connection.php")
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
