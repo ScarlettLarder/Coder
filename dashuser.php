@@ -9,19 +9,33 @@
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&family=Libre+Barcode+128+Text&display=swap" rel="stylesheet">
     </head>
     <body>
-        <nav class="navbar"> 
-            <h1 class="text-5xl p-2"><a href="page.php">Coder Dojo</a></h1>
-            <div class="nav_heading">
-                <a href="aboutus.php"> About us </a>  
-                <a href="sessions.php"> Sessions </a>    
-                <a href="login.php"> Login </a>  
-                <a href="apply.php" class="nav_apply"> Apply </a>  
-            </div>
-        </nav>
+        <?php 
+            include("snippets/navbar.php");
+            include ("scripts/connection.php");
+            echo"<script>console.log('wow!')</script>";
 
+            if(isset($_COOKIE["user"])){
+                $user = $_COOKIE["user"];
+                $stmt = $conn->prepare("SELECT Admin_flag FROM user WHERE Name = ?");
+                mysqli_stmt_bind_param($stmt,"s", $name);
+        
+                $stmt->execute(); $stmt->store_result(); 
+                $stmt->bind_Result($Admin_flag);
+                $stmt->fetch();
+        
+                if($Admin_flag == true){
+                    echo"works!";
+                }
+                else{
+                    die("ERROR (01): Request for admin dashboard from regular user!");
+                };
+            }else{
+                die("ERROR (02): Request for admin dashboard from unlogged in user!");
+            }
+        ?>
         <div>
             <div class="flex pt-9 pl-5 justify-between">
-                <h3 class="text-5xl">Hello, insert name</h3>
+                <h3 class="text-5xl">Hello <?php echo"".$_COOKIE["user"]?></h3>
                 <button class="text-3xl py-2 px-4 bg-pink-200 rounded-2xl mr-10">Settings</button>
             </div>
             <p class="text-3xl my-10 ml-20">Upcoming Sessions:</p>

@@ -17,14 +17,14 @@
             $stmt->bind_Result($id, $hash_pass);
             $stmt->fetch();
             if (password_verify($password, $hash_pass)) {
-                setCookie("Name", $username);
-                setCookie("Pass", $hash_pass);
-                setCookie("id", $id);
+                setcookie("user", $username, time() + 3000, "/", "", true, true);
+                setcookie("pass", $pass_hash, time() + 3000, "/", "", true, true);
+                setcookie("id", $id, time() + 3000, "/", "", true, true);
+                header("Location: ../page.php");
             }else {
                 echo"Password couldn't be verified";
             };
         };
         mysqli_stmt_execute($stmt);
     }
-    exit();
 ?>

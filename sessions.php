@@ -9,15 +9,9 @@
         <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500&family=Libre+Barcode+128+Text&display=swap" rel="stylesheet">
     </head>
     <body>
-        <nav class="navbar"> 
-            <h1 class="text-5xl p-2"><a href="page.php">Coder Dojo</a></h1>
-            <div class="nav_heading">
-                <a href="aboutus.php"> About us </a>  
-                <a href="sessions.php"> Sessions </a>    
-                <a href="login.php"> Login </a>  
-                <a href="apply.php" class="nav_apply"> Apply </a>  
-            </div>
-        </nav>
+        <?php 
+            include("snippets/navbar.php")
+        ?>
 
         <div>
             <h3 class="text-5xl pt-9 pl-5">Sessions avaliable:</h3>
