@@ -1,17 +1,18 @@
 <?php
-    include ("connection.php")
+    include ("connection.php");
+
+    if (isset($_POST['submit'])) {
         $username = $_POST["name"];
         $password = $_POST["password"];
+        $email = $_POST["email"];
+        $phone = $_POST["phone"];
+        $birthday = $_POST["bday"];
 
-        $sql = "SELECT * FROM user WHERE username='$username'";
-        $result = mysqli_query($conn, $sql); 
-        $num = mysqli_num_rows($result);
+        $hash_pass = password_hash($password, PASSWORD_DEFAULT);
 
-        if($num == 0) {
-            $hash_password($password, PASSWORD_DEFAULT);
-            $sql = "INSERT INTO 'user' ('Name', 'Password') VALUES ('$username', '$hash_password')";
-            $result = mysqli_query($conn, $sql);
+        $stmt = $conn->prepare("INSERT INTO user(name, password,email,phone,birthday) VALUES (?, ?, ?, ?, ?)");
+        mysqli_stmt_bind_param($stmt,"sssss", $username, $hash_pass, $email, $phone, $birthday);
+        mysqli_stmt_execute($stmt);
 
-        }
-    
+    }
 ?>

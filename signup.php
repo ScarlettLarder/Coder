@@ -21,7 +21,7 @@
             <h3 class="text-5xl pt-9 pl-5">Sign up</h3>
             <br>
             <div class="pl-5">
-                <form class="" action="scripts\signup_script.php">
+                <form name="form" action="scripts\signup_script.php" method="POST" onsubmit="isValid();">
                     <label>What is your first and last name? &#40;28 limit Required&#41;</label><br>
                     <input class="rounded-md border-2 border-green-800"  type="text" id="name" name="name" required><br><br>
                     <label for="lname">Password? &#40;28 limit Required&#41;</label><br>
@@ -32,8 +32,13 @@
                     <input class="rounded-md border-2 border-green-800" type="phone" id="phone" name="phone" required><br><br>
                     <label for="lname">Birthday</label><br>
                     <input class="rounded-md border-2 border-green-800" type="date" id="bday" name="bday" required><br><br>
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="submit" name="submit">
                 </form>
+                <script>
+                    function isValid() {
+                        return True;
+                    }
+                </script>
                 <a class="mt-3" href="signup.php">Sign up</a>
             </div>
 
