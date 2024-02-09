@@ -17,13 +17,13 @@
             if(isset($_COOKIE["user"])){
                 $user = $_COOKIE["user"];
                 $stmt = $conn->prepare("SELECT Admin_flag FROM user WHERE Name = ?");
-                mysqli_stmt_bind_param($stmt,"s", $name);
+                mysqli_stmt_bind_param($stmt,"s", $user);
         
                 $stmt->execute(); $stmt->store_result(); 
                 $stmt->bind_Result($Admin_flag);
                 $stmt->fetch();
         
-                if($Admin_flag == true){
+                if($Admin_flag == false){
                     echo"works!";
                 }
                 else{

@@ -10,6 +10,12 @@
                 echo"<a href='login.php'>Login</a>";
             }
         ?> 
-        <a href="apply.php" class="nav_apply"> Apply </a>  
+        <?php
+            if(isset($_COOKIE["user"])) {
+                echo"<a class='nav_apply' href='applylogged.php'>Apply</a>";
+            }else{
+                echo"<a class='nav_apply' href='apply.php'>Apply</a>";
+            }
+        ?>
     </div>
 </nav>
