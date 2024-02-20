@@ -38,7 +38,7 @@
                 <h3 class="text-5xl">Hello <?php echo"".$_COOKIE["user"]?></h3>
                 <button class="text-3xl py-2 px-4 bg-pink-200 rounded-2xl mr-10">Settings</button>
             </div>
-            <p class="text-3xl my-10 ml-20">Upcoming Sessions:</p>
+            <p class="text-3xl my-10 ml-20">Upcoming Sessionss:</p>
             <div class="grid grid-cols-2 rounded-lg">
                 <div class="grid grid-cols-2 bg-green-200 mx-20 mb-20 rounded-lg">
                     <div>
