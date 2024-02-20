@@ -16,21 +16,31 @@
         <div>
             <h3 class="text-5xl pt-9 pl-5">Sessions avaliable:</h3>
             <div class="grid grid-cols-2 rounded-lg">
-                <div class="grid grid-cols-2 bg-green-200 mx-20 my-20 rounded-lg">
-                    <div>
-                        <h3 class="text-2xl pt-3 px-5">Intro to programming with python</h3>
-                        <hr class="mx-10 border-gray-800 my-3">
-                        <p class="mx-5">With this session, we teach basic syntax and algorithms, making your first text based game!</p>
-                        <p class="mx-5 pt-3">Activities:</p>
-                        <p class="mx-5">Algorithms | Game making | Syntax</p>
-                        <p class="py-3 mx-5"> Date:12/4/24 - 2pm</p>
-                    </div>
+                <?php 
+                    include ("scripts\connection.php");
+                    $sql = "SELECT * FROM dojos";
+                    $result = $conn->query($sql);
 
-                    <img src="img/session2_img.jpg">
-                </div>
-
-            </div>
-        </div>
-        
+                    while($rows=$result->fetch_assoc()){
+                ?>  
+                    <a href="apply.php?<?php echo'ID='.$rows['Dojo_name']?>">
+                    
+                    <div class="grid grid-cols-2 bg-green-200 mx-20 my-20 rounded-lg">
+                        <div>
+                            <h3 class="text-2xl pt-3 px-5"><?php echo"".$rows["Dojo_name"]?></h3>
+                            <hr class="mx-10 border-gray-800 my-3">
+                            <p class="mx-5"><?php echo"".$rows["Dojo_desc"]?></p>
+                            <p class="mx-5 pt-3">Activities:</p>
+                            <p class="mx-5"><?php echo"".$rows["Dojo_activities"]?></p>
+                            <p class="py-3 mx-5">Date: <?php echo"".$rows["Dojo_date"]?></p>
+                        </div>
+                        <?php echo "<img src='data:image;base64,".base64_encode($rows["Dojo_img"])."'>"; ?>
+                    </div> 
+                    </a> 
+                <?php
+                
+                    } 
+                ?>
+            </div> 
     </body>
 </html>

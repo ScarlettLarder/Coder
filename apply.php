@@ -12,7 +12,7 @@
         <?php 
             include("snippets/navbar.php")
         ?>
-            <h3 class="text-5xl underline pt-9 pl-5"> Apply to: "PLACE SESSION HERE"</h3>
+            <h3 class="text-5xl underline pt-9 pl-5"> Apply to: "<?php echo''.$_GET["ID"]?>"</h3>
             <br>
             <a href="applylogged.php">loggedin</a>
             <div class="pl-5">
