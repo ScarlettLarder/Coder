@@ -3,7 +3,6 @@
     echo"<script>console.log('wow!')</script>";
 
     $name = $_COOKIE["user"];
-    echo"name";
     if(isset($name)){
         $stmt = $conn->prepare("SELECT Admin_flag FROM user WHERE Name = ?");
         mysqli_stmt_bind_param($stmt,"s", $name);

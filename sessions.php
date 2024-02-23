@@ -23,7 +23,13 @@
 
                     while($rows=$result->fetch_assoc()){
                 ?>  
-                    <a href="apply.php?<?php echo'ID='.$rows['Dojo_name']?>">
+                    <a href="<?php
+                    if(isset($_COOKIE['user'])){
+                        echo'applylogged.php?ID='.$rows['Dojo_name'];
+                    }else{
+                        echo'apply.php?ID='.$rows['Dojo_name'];
+                    };
+                    ?>"> 
                     
                     <div class="grid grid-cols-2 bg-green-200 mx-20 my-20 rounded-lg">
                         <div>
