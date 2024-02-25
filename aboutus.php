@@ -14,14 +14,14 @@
         ?>
 
         <div class="grid grid-cols-2">
-            <div class="main_sec_inner">
+            <div class="mx-20">
                 <h3 class="text-6xl pt-10 pl-10 pb-5"> About us</h3>
-                <hr style="border-top: 4px solid #0B3953;padding-left:30px; padding-left:30px;  padding-right:30px; padding- "/>
-                <h3 class="pl-10 text-3xl"> We are the Coder Dojo, helping people learn how to code and improve their skills. </h3>
+                <hr style="border-top: 4px solid #0B3953;padding-left:40px; padding-left:40px;  padding-right:30px;"/>
+                <h3 class="pl-10 text-3xl mt-5"> We are the Coder Dojo, helping people learn how to code and improve their skills. </h3>
                 <p class="pl-10 text-3xl">
 We aim to help people get more knowledgeable about how tech works and give them the necessary skills for not only tech jobs, but anywhere where coding is needed.</p>
             </div>
-            <div class="main_sec_inner">
+            <div class="mx-auto">
                 <Image style="border-radius: 5px;" src="img/about_img.jpg"/>
             </div>
         </div>

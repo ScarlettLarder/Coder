@@ -17,7 +17,7 @@
             include("snippets/navbar.php")
         ?>
 
-        <div class="grid grid-cols-2">
+        <div class="grid grid-cols-2 mx-10">
             <div class="mx-auto my-auto">
                 <h3 class="text-4xl"> Welcome to the </h3>
                 <h2 class="text-9xl"> Dojo </h2>
@@ -29,17 +29,17 @@
             </div>
         </div>
 
-        <div style="background-color:#E7FFF6;" class="grid grid-cols-2">
-            <div class="main_sec_inner">
-                <Image style="border-radius: 5px;" src="img/main_img.jpg"/>
+        <div style="background-color:#E7FFF6;" class="grid grid-cols-2 my-20 py-10">
+            <div class="mx-auto">
+                <Image style="border-radius: 5px;" src="img\main_img2.jpg"/>
             </div>
             <div class="mx-auto my-auto">
                 <h3 class="text-5xl pb-3"> Check out whats available </h3>
                 <hr style="border-top: 4px solid #0B3953"/>
                 <p class="text-2xl pt-3"> You can see what Dojos are free to book here</p>
-                <div class="flex pt-3">
-                    <p class="bg-pink-300 hover:bg-pink-200 px-4 py-1 rounded-lg">Sessions</p>
-                </div>
+                <a href="sessions.php" class="flex pt-3">
+                    <p class="bg-pink-200 hover:bg-pink-100 px-4 py-1 rounded-lg text-2xl">Sessions</p>
+                </a>
             </div>
 
         </div>

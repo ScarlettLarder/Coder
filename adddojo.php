@@ -15,19 +15,40 @@
             <h3 class="text-5xl underline pt-9 pl-5">Create a Dojo</h3>
             <br>
             <div class="pl-5">
-                <form class="" action="/action_page.php">
+                <form class="" action="scripts\add_script.php"  method="POST" name="form" onsubmit="isValid();" >
                     <label>What is the Dojo called?</label><br>
-                    <input class="rounded-md border-2 border-green-800"  type="text" id="name" name="name"><br><br>
+                    <input class="rounded-md border-2 border-green-800"  type="text" id="name" name="name" required><br><br>
                     <label for="lname">Description of Dojo</label><br>
-                    <textarea class="rounded-md border-2 border-green-800" id="desc" name="desc" rows="10" cols="30">Description</textarea><br><br>
-                    <label>Activities &#40;please seperate with a ,&#41;</label><br>
-                    <input class="rounded-md border-2 border-green-800"  type="text" id="activities" name="activities"><br><br>
+                    <textarea class="rounded-md border-2 border-green-800" id="desc" name="desc" rows="10" cols="30" required>Description</textarea><br><br>
+                    <label>Activities &#40;please seperate with a <q>|</q> &#41;</label><br>
+                    <input class="rounded-md border-2 border-green-800"  type="text" id="activities" name="activities" required><br><br>
                     <label>Date and time</label><br>
-                    <input class="rounded-md border-2 border-green-800"  type="date" id="date" name="date"><br><br>
-                    <input type="submit" value="Submit">
+                    <input class="rounded-md border-2 border-green-800"  type="date" id="date" name="date" required><br><br>
+                    <input type="submit" value="submit" name="submit" class="bg-pink-200 hover:bg-pink-100 px-4 py-1 rounded-lg text-1xl">
                 </form>
             </div>
-
+            <script>
+                    function typeValid(input){
+                        var inputValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        return inputValidation.test(input);
+                    };
+                    function isValid() {
+                        var user = document.form.user.value;
+                        var pass = document.form.pass.value;
+                        if(user.valueMissing || app_reason.valueMissing || Fav_1.valueMissing || Fav_2.valueMissing || Fav_3.valueMissing){
+                            alert("Username or password is empty.")
+                            return false
+                        }
+                        if(email.typeMismatch){
+                            alert("Email incorrectly inputted.")
+                            return false
+                        }
+                        if(typeValid(user) || typeValid(app_reason) || typeValid(Fav_1) || typeValid(Fav_2) || typeValid(Fav_3)){
+                            alert("wowza")
+                            return false
+                        }
+                    };
+            </script>
         </div>
     </body>
 </html>

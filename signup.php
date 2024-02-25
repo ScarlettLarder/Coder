@@ -20,20 +20,38 @@
                     <input class="rounded-md border-2 border-green-800"  type="text" id="name" name="name" required><br><br>
                     <label for="lname">Password? &#40;28 limit Required&#41;</label><br>
                     <input class="rounded-md border-2 border-green-800" type="pass" id="password" name="password" required><br><br>
-                    <label for="lname">Email</label><br>
-                    <input class="rounded-md border-2 border-green-800" type="email" id="email" name="email" required><br><br>
+                    <label for="lname">Email </label><br>
+                    <input class="rounded-md border-2 border-green-800" type="email" id="email" name="email"><br><br>
                     <label for="lname">Phone number</label><br>
-                    <input class="rounded-md border-2 border-green-800" type="phone" id="phone" name="phone" required><br><br>
+                    <input class="rounded-md border-2 border-green-800" type="phone" id="phone" name="phone"><br><br>
                     <label for="lname">Birthday</label><br>
-                    <input class="rounded-md border-2 border-green-800" type="date" id="bday" name="bday" required><br><br>
-                    <input type="submit" value="submit" name="submit">
+                    <input class="rounded-md border-2 border-green-800" type="date" id="bday" name="bday"><br><br>
+                    <input type="submit" value="submit" name="submit" class="bg-pink-200 hover:bg-pink-100 px-4 py-1 rounded-lg text-1xl">
+                    <a class="mt-3 ml-3" href="signup.php">Sign up</a>
                 </form>
                 <script>
+                    function typeValid(input){
+                        var inputValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                        return inputValidation.test(input);
+                    };
                     function isValid() {
-                        return True;
-                    }
+                        var user = document.form.user.value;
+                        var pass = document.form.pass.value;
+                        if(name.valueMissing || password.valueMissing ){
+                            alert("Username or password is empty.")
+                            return false
+                        }
+                        if(email.typeMismatch){
+                            alert("Email incorrectly inputted.")
+                            return false
+                        }
+                        if(typeValid(name) || typeValid(password) || typeValid(email) || typeValid(phone) || typeValid(date)){
+                            alert("wowza")
+                            return false
+                        }
+                    };
                 </script>
-                <a class="mt-3" href="signup.php">Sign up</a>
+                
             </div>
 
         </div>

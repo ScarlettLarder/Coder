@@ -10,10 +10,9 @@
     </head>
     <body>
         <?php 
+            try{
             include("snippets/navbar.php");
             include ("scripts/connection.php");
-            echo"<script>console.log('wow!')</script>";
-
             if(isset($_COOKIE["user"])){
                 $user = $_COOKIE["user"];
                 $stmt = $conn->prepare("SELECT Admin_flag FROM user WHERE Name = ?");
@@ -24,37 +23,53 @@
                 $stmt->fetch();
         
                 if($Admin_flag == false){
-                    echo"works!";
+                    echo"<script>console.log('Logged in correctly')</script>";
                 }
                 else{
-                    die("ERROR (01): Request for admin dashboard from regular user!");
+                    die("ERROR (1001): Request for admin dashboard from regular user!");
                 };
             }else{
-                die("ERROR (02): Request for admin dashboard from unlogged in user!");
+                die("ERROR (1002): Request for admin dashboard from unlogged in user!");
             }
+        }catch(Exception $e){
+            echo"ERROR (1007): Failed to connect for user dashboard!";
+        }
         ?>
         <div>
-            <div class="flex pt-9 pl-5 justify-between">
-                <h3 class="text-5xl">Hello <?php echo"".$_COOKIE["user"]?></h3>
+            <div class="flex pt-9 justify-between">
+                <h3 class="text-5xl ml-20">Hello <?php echo"".$_COOKIE["user"]?></h3>
                 <button class="text-3xl py-2 px-4 bg-pink-200 rounded-2xl mr-10">Settings</button>
             </div>
-            <p class="text-3xl my-10 ml-20">Upcoming Sessionss:</p>
-            <div class="grid grid-cols-2 rounded-lg">
-                <div class="grid grid-cols-2 bg-green-200 mx-20 mb-20 rounded-lg">
+            <p class="text-3xl my-10 ml-20">Your upcoming Sessions:</p>
+            <div class="grid grid-cols-3 rounded-lg">
+                <?php 
+                    try{
+                        $id = $_COOKIE["id"];
+                        $sql = "SELECT * FROM application LEFT JOIN user on application.ID=user.ID WHERE user.ID=? ";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param("s", $id);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+    
+                        while($rows = $result->fetch_assoc()) { 
+                    
+                ?>  
+                <div class="bg-green-200 mx-20 my-5 rounded-lg py-3">
                     <div>
-                        <h3 class="text-2xl pt-3 px-5">Intro to programming with python</h3>
+                        <h3 class="text-2xl px-5"><?php echo $rows["App_Name"]?></h3>
                         <hr class="mx-10 border-gray-800 my-3">
-                        <p class="mx-5">With this session, we teach basic syntax and algorithms, making your first text based game!</p>
-                        <p class="mx-5 pt-3">Activities:</p>
-                        <p class="mx-5">Algorithms | Game making | Syntax</p>
-                        <p class="py-3 mx-5"> Date:12/4/24 - 2pm</p>
+                        <p class="mx-5"><?php echo $rows["App_Date"]?></p>
                     </div>
+                </div> 
+            <?php
 
-                    <img src="img/session2_img.jpg">
-                </div>
+            } 
+            }catch(Exception $e){
+                echo"ERROR (1006): Failed to connect for user dashboard!";
+            }
+            ?>
 
             </div>
-
         </div>
         
     </body>

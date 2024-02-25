@@ -17,6 +17,7 @@
             <h3 class="text-5xl pt-9 pl-5">Sessions avaliable:</h3>
             <div class="grid grid-cols-2 rounded-lg">
                 <?php 
+                    try{
                     include ("scripts\connection.php");
                     $sql = "SELECT * FROM dojos";
                     $result = $conn->query($sql);
@@ -46,7 +47,11 @@
                 <?php
                 
                     } 
+                }catch(Exception $e){
+                    echo"ERROR (1005): Database request rejected for sessions!";
+                }
                 ?>
             </div> 
+        </div>
     </body>
 </html>

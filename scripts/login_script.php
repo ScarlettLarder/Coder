@@ -1,6 +1,5 @@
 <?php
     include ("connection.php");
-    echo"<script>console.log('wow!')</script>";
     if (isset($_POST['submit'])) {
 
         $username = $_POST["name"];
@@ -27,4 +26,3 @@
         };
         mysqli_stmt_execute($stmt);
     }
-?>

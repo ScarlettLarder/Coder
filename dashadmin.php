@@ -13,7 +13,7 @@
             include("snippets/navbar.php");
             include ("scripts/connection.php");
             echo"<script>console.log('wow!')</script>";
-
+            
             if(isset($_COOKIE["user"])){
                 $user = $_COOKIE["user"];
                 $stmt = $conn->prepare("SELECT Admin_flag FROM user WHERE Name = ?");
@@ -27,34 +27,54 @@
                     echo"<script>console.log('Admin account access success!')</script>";
                 }
                 else{
-                    die("ERROR (01): Request for admin dashboard from regular user!");
+                    die("ERROR (1001): Request for admin dashboard from regular user!");
                 };
             }else{
-                die("ERROR (02): Request for admin dashboard from unlogged in user!");
+                die("ERROR (1002): Request for admin dashboard from unlogged in user!");
             }
         ?>
         <div>
-            <div class="flex pt-9 pl-5 justify-between">
-                <h3 class="text-5xl">ADMIN</h3>
-                <button class="text-3xl py-2 px-4 bg-pink-200 rounded-2xl mr-10">Add a Dojo</button>
+            <div class="flex justify-between">
+                <h3 class="text-5xl pt-9 pl-5">Admin dashboard:</h3>
+                <a class="my-auto" href="adddojo.php">
+                    <p class="nav_apply my-auto text-2xl py-2 mr-10">Add a Dojo</p>
+                </a>
             </div>
-            <p class="text-3xl my-10 ml-20">Current Dojos coming up:</p>
             <div class="grid grid-cols-2 rounded-lg">
-                <div class="grid grid-cols-2 bg-green-200 mx-20 mb-20 rounded-lg">
-                    <div>
-                        <h3 class="text-2xl pt-3 px-5">Intro to programming with python</h3>
-                        <hr class="mx-10 border-gray-800 my-3">
-                        <p class="mx-5">With this session, we teach basic syntax and algorithms, making your first text based game!</p>
-                        <p class="mx-5 pt-3">Activities:</p>
-                        <p class="mx-5">Algorithms | Game making | Syntax</p>
-                        <p class="py-3 mx-5"> Date:12/4/24 - 2pm</p>
-                    </div>
+                <?php 
+                    include ("scripts\connection.php");
+                    $sql = "SELECT * FROM dojos";
+                    $result = $conn->query($sql);
 
-                    <img src="img/session2_img.jpg">
-                </div>
-
-            </div>
-
+                    while($rows=$result->fetch_assoc()){
+                ?>   
+                    <div class="grid grid-cols-2 bg-green-200 mx-20 my-20 rounded-lg">
+                        <div>
+                            <div class="flex justify-between">
+                                <h3 class="text-2xl pt-3 px-5"><?php echo"".$rows["Dojo_name"]?></h3>
+                                <div class="flex gap-3">
+                                    <a href=<?php echo'edit_dojo.php?ID='.$rows['Dojo_ID']; ?> class="my-auto">
+                                        <img src="img\Edit_icon.svg" alt="HTML tutorial" class="w-7">
+                                    </a>
+                                    <a href=<?php echo'scripts\delete_script.php?ID='.$rows['Dojo_ID']; ?> class="my-auto">
+                                        <img src="img\Cancel_icon.svg" alt="HTML tutorial" class="w-8">
+                                    </a>
+                                </div>
+                            </div>
+                            <hr class="mx-10 border-gray-800 my-3">
+                            <p class="mx-5"><?php echo"".$rows["Dojo_desc"]?></p>
+                            <p class="mx-5 pt-3">Activities:</p>
+                            <p class="mx-5"><?php echo"".$rows["Dojo_activities"]?></p>
+                            <p class="py-3 mx-5">Date: <?php echo"".$rows["Dojo_date"]?></p>
+                        </div>
+                        <?php echo "<img src='data:image;base64,".base64_encode($rows["Dojo_img"])."'>"; ?>
+                    </div> 
+                    </a> 
+                <?php
+                
+                    } 
+                ?>
+            </div> 
         </div>
         
     </body>
