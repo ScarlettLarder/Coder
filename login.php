@@ -25,27 +25,27 @@
                 </form>
             </div>
             <script>
-                    function typeValid(input){
-                        var inputValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                        return inputValidation.test(input);
-                    };
-                    function isValid() {
-                        var user = document.form.user.value;
-                        var pass = document.form.pass.value;
-                        if(user.valueMissing || app_reason.valueMissing || Fav_1.valueMissing || Fav_2.valueMissing || Fav_3.valueMissing){
-                            alert("Username or password is empty.")
-                            return false
-                        }
-                        if(email.typeMismatch){
-                            alert("Email incorrectly inputted.")
-                            return false
-                        }
-                        if(typeValid(user) || typeValid(app_reason) || typeValid(Fav_1) || typeValid(Fav_2) || typeValid(Fav_3)){
-                            alert("wowza")
-                            return false
-                        }
-                    };
-                </script>
+                //Function that test the valid of the users inputs inside of the second part of the isValid function.
+                function typeValid(input){
+                    var inputValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    return inputValidation.test(input);
+                }
+                //Function that validates the user inputs.
+                function isValid() {
+                    var user = document.form.name.value;
+                    var pass = document.form.password.value;
+                    if(user === "" || pass === ""){
+                        alert("Name, application reason, or favorites are empty.");
+                        return false;
+                    }
+                    //Uses the function earlier to send over each varible, checking the validity.
+                    if(!typeValid(user) || !typeValid(pass)){
+                        alert("Invalid input in one of the fields.");
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
         </div>
     </body>
 </html>

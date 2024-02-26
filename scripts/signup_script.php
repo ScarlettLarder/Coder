@@ -8,6 +8,7 @@
         $phone = $_POST["phone"];
         $birthday = $_POST["bday"];
 
+        //Hashs the password to be placed into the database.
         $hash_pass = password_hash($password, PASSWORD_DEFAULT);
 
         $stmt = $conn->prepare("INSERT INTO user(name, password,email,phone,birthday) VALUES (?, ?, ?, ?, ?)");
@@ -15,4 +16,3 @@
         mysqli_stmt_execute($stmt);
 
     }
-?>

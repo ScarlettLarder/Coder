@@ -11,24 +11,23 @@
     <body>
         <?php 
             include("snippets/navbar.php")
-        ?>
-
+        ?>=
         <div>
             <h3 class="text-5xl pt-9 pl-5">Sessions avaliable:</h3>
             <div class="grid grid-cols-2 rounded-lg">
-                <?php 
-                    try{
+            <?php 
+                try{
                     include ("scripts\connection.php");
                     $sql = "SELECT * FROM dojos";
                     $result = $conn->query($sql);
-
+                    //While there is dojos in the database, follow the code.
                     while($rows=$result->fetch_assoc()){
-                ?>  
+            ?> 
                     <a href="<?php
                     if(isset($_COOKIE['user'])){
-                        echo'applylogged.php?ID='.$rows['Dojo_name'];
+                        echo'applylogged.php?Name='.$rows['Dojo_name'];
                     }else{
-                        echo'apply.php?ID='.$rows['Dojo_name'];
+                        echo'apply.php?Name='.$rows['Dojo_name'];
                     };
                     ?>"> 
                     

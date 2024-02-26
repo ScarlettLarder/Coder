@@ -10,36 +10,35 @@
     </head>
     <body>
         <?php 
+            //This code is from the dashadmin page, checking if the user is an admin or not.
             try{
-            include("snippets/navbar.php");
-            include ("scripts/connection.php");
-            echo"<script>console.log('wow!')</script>";
-            if(isset($_COOKIE["user"])){
-                $user = $_COOKIE["user"];
-                $stmt = $conn->prepare("SELECT Admin_flag FROM user WHERE Name = ?");
-                mysqli_stmt_bind_param($stmt,"s", $user);
-        
-                $stmt->execute(); $stmt->store_result(); 
-                $stmt->bind_Result($Admin_flag);
-                $stmt->fetch();
-                
-                if($Admin_flag == true){
-                    echo"<script>console.log('Admin account access success!')</script>";
-                }
-                else{
-                    die("ERROR (1001): Request for admin dashboard from regular user!");
-                };
-            }else{
-                die("ERROR (1002): Request for admin dashboard from unlogged in user!");
-            }
-            $id = $_GET["ID"];
-            $stmt = $conn->prepare("SELECT Dojo_name, Dojo_desc, Dojo_date, Dojo_activities FROM dojos WHERE Dojo_ID = ?");
-            $stmt->bind_param("s", $id);
-            $stmt->execute(); 
-            $stmt->store_result(); 
-            $stmt->bind_result($dojo_name, $dojo_desc, $dojo_date, $activities_array);
-            $stmt->fetch();
+                include("snippets/navbar.php");
+                include ("scripts/connection.php");
+                if(isset($_COOKIE["user"])){
+                    $user = $_COOKIE["user"];
+                    $stmt = $conn->prepare("SELECT Admin_flag FROM user WHERE Name = ?");
+                    mysqli_stmt_bind_param($stmt,"s", $user);
             
+                    $stmt->execute(); $stmt->store_result(); 
+                    $stmt->bind_Result($Admin_flag);
+                    $stmt->fetch();
+                    
+                    if($Admin_flag == true){
+                        echo"<script>console.log('Admin account access success!')</script>";
+                    }
+                    else{
+                        die("ERROR (1001): Request for admin dashboard from regular user!");
+                    };
+                }else{
+                    die("ERROR (1002): Request for admin dashboard from unlogged in user!");
+                }
+                $id = $_GET["ID"];
+                $stmt = $conn->prepare("SELECT Dojo_name, Dojo_desc, Dojo_date, Dojo_activities FROM dojos WHERE Dojo_ID = ?");
+                $stmt->bind_param("s", $id);
+                $stmt->execute(); 
+                $stmt->store_result(); 
+                $stmt->bind_result($dojo_name, $dojo_desc, $dojo_date, $activities_array);
+                $stmt->fetch();
             ?>
             <div>
                 <h3 class="text-5xl pt-9 pl-5">Admin dashboard/editing <q><?php echo"".$dojo_name?></q></h3>
@@ -59,7 +58,7 @@
                 </form>
                 <script>
                     function isValid() {
-                        //Due to this being for admins, this can always be sent as true
+                        //Due to this being for admins, this can always be sent as true. More finale versions will have extra verification.
                         return true;
                     };
                 </script>

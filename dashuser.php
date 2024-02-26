@@ -10,30 +10,8 @@
     </head>
     <body>
         <?php 
-            try{
             include("snippets/navbar.php");
             include ("scripts/connection.php");
-            if(isset($_COOKIE["user"])){
-                $user = $_COOKIE["user"];
-                $stmt = $conn->prepare("SELECT Admin_flag FROM user WHERE Name = ?");
-                mysqli_stmt_bind_param($stmt,"s", $user);
-        
-                $stmt->execute(); $stmt->store_result(); 
-                $stmt->bind_Result($Admin_flag);
-                $stmt->fetch();
-        
-                if($Admin_flag == false){
-                    echo"<script>console.log('Logged in correctly')</script>";
-                }
-                else{
-                    die("ERROR (1001): Request for admin dashboard from regular user!");
-                };
-            }else{
-                die("ERROR (1002): Request for admin dashboard from unlogged in user!");
-            }
-        }catch(Exception $e){
-            echo"ERROR (1007): Failed to connect for user dashboard!";
-        }
         ?>
         <div>
             <div class="flex pt-9 justify-between">
@@ -43,14 +21,16 @@
             <p class="text-3xl my-10 ml-20">Your upcoming Sessions:</p>
             <div class="grid grid-cols-3 rounded-lg">
                 <?php 
+                    //try the code below, or an error code will show up for the user.
                     try{
                         $id = $_COOKIE["id"];
+                        //Joining together the application table from the user table, to get the data from the users applications. This only applies to applications with the users ID.
                         $sql = "SELECT * FROM application LEFT JOIN user on application.ID=user.ID WHERE user.ID=? ";
                         $stmt = $conn->prepare($sql);
                         $stmt->bind_param("s", $id);
                         $stmt->execute();
                         $result = $stmt->get_result();
-    
+                        //Show the dojos the user has applied to.
                         while($rows = $result->fetch_assoc()) { 
                     
                 ?>  

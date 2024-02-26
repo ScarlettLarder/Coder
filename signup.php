@@ -30,27 +30,30 @@
                     <a class="mt-3 ml-3" href="signup.php">Sign up</a>
                 </form>
                 <script>
-                    function typeValid(input){
-                        var inputValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                        return inputValidation.test(input);
-                    };
-                    function isValid() {
-                        var user = document.form.user.value;
-                        var pass = document.form.pass.value;
-                        if(name.valueMissing || password.valueMissing ){
-                            alert("Username or password is empty.")
-                            return false
-                        }
-                        if(email.typeMismatch){
-                            alert("Email incorrectly inputted.")
-                            return false
-                        }
-                        if(typeValid(name) || typeValid(password) || typeValid(email) || typeValid(phone) || typeValid(date)){
-                            alert("wowza")
-                            return false
-                        }
-                    };
-                </script>
+                //Function that test the valid of the users inputs inside of the second part of the isValid function.
+                function typeValid(input){
+                    var inputValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    return inputValidation.test(input);
+                }
+                //Function that validates the user inputs.
+                function isValid() {
+                    var user = document.form.name.value;
+                    var pass = document.form.password.value;
+                    var email = document.form.email.value;
+                    var phone = document.form.phone.value;
+                    var date = document.form.bday.value;
+                    if(user === "" || pass === "" || email === "" || phone === "" || date === ""){
+                        alert("Name, application reason, or favorites are empty.");
+                        return false;
+                    }
+                    //Uses the function earlier to send over each varible, checking the validity.
+                    if(!typeValid(user) || !typeValid(pass) || !typeValid(email) || !typeValid(phone) || !typeValid(date)){
+                        alert("Invalid input in one of the fields.");
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
                 
             </div>
 

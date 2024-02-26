@@ -28,26 +28,9 @@
                 </form>
             </div>
             <script>
-                    function typeValid(input){
-                        var inputValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                        return inputValidation.test(input);
-                    };
-                    function isValid() {
-                        var user = document.form.user.value;
-                        var pass = document.form.pass.value;
-                        if(user.valueMissing || app_reason.valueMissing || Fav_1.valueMissing || Fav_2.valueMissing || Fav_3.valueMissing){
-                            alert("Username or password is empty.")
-                            return false
-                        }
-                        if(email.typeMismatch){
-                            alert("Email incorrectly inputted.")
-                            return false
-                        }
-                        if(typeValid(user) || typeValid(app_reason) || typeValid(Fav_1) || typeValid(Fav_2) || typeValid(Fav_3)){
-                            alert("wowza")
-                            return false
-                        }
-                    };
+                function isValid() {
+                    return true;
+                }
             </script>
         </div>
     </body>
