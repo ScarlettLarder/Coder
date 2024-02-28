@@ -30,11 +30,6 @@
                     <a class="mt-3 ml-3" href="signup.php">Sign up</a>
                 </form>
                 <script>
-                //Function that test the valid of the users inputs inside of the second part of the isValid function.
-                function typeValid(input){
-                    var inputValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    return inputValidation.test(input);
-                }
                 //Function that validates the user inputs.
                 function isValid() {
                     var user = document.form.name.value;
@@ -46,9 +41,8 @@
                         alert("Name, application reason, or favorites are empty.");
                         return false;
                     }
-                    //Uses the function earlier to send over each varible, checking the validity.
-                    if(!typeValid(user) || !typeValid(pass) || !typeValid(email) || !typeValid(phone) || !typeValid(date)){
-                        alert("Invalid input in one of the fields.");
+                    if(user >=28 || pass >=28 || user <=4 || pass <=4 ){
+                        alert("The password and/or username has an invalid number of characters!");
                         return false;
                     }
                     return true;

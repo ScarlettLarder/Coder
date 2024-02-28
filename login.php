@@ -25,22 +25,12 @@
                 </form>
             </div>
             <script>
-                //Function that test the valid of the users inputs inside of the second part of the isValid function.
-                function typeValid(input){
-                    var inputValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    return inputValidation.test(input);
-                }
                 //Function that validates the user inputs.
                 function isValid() {
                     var user = document.form.name.value;
                     var pass = document.form.password.value;
                     if(user === "" || pass === ""){
                         alert("Name, application reason, or favorites are empty.");
-                        return false;
-                    }
-                    //Uses the function earlier to send over each varible, checking the validity.
-                    if(!typeValid(user) || !typeValid(pass)){
-                        alert("Invalid input in one of the fields.");
                         return false;
                     }
                     return true;

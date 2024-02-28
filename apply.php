@@ -73,11 +73,6 @@
                 <input type="submit" value="submit" name="submit" class="bg-pink-200 hover:bg-pink-100 px-4 py-1 rounded-lg text-1xl mb-10">
             </form>
             <script>
-                //Function that test the valid of the users inputs inside of the second part of the isValid function.
-                function typeValid(input){
-                    var inputValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    return inputValidation.test(input);
-                }
                 //Function that validates the user inputs.
                 function isValid() {
                     var user = document.form.name.value;
@@ -87,11 +82,6 @@
                     var Fav_3 = document.form.Fav_3.value;
                     if(user === "" || app_reason === "" || Fav_1 === "" || Fav_2 === "" || Fav_3 === ""){
                         alert("Name, application reason, or favorites are empty.");
-                        return false;
-                    }
-                    //Uses the function earlier to send over each varible, checking the validity.
-                    if(!typeValid(user) || !typeValid(app_reason) || !typeValid(Fav_1) || !typeValid(Fav_2) || !typeValid(Fav_3)){
-                        alert("Invalid input in one of the fields.");
                         return false;
                     }
                     return true;

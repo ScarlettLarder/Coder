@@ -36,7 +36,12 @@
                 ?>  
                 <div class="bg-green-200 mx-20 my-5 rounded-lg py-3">
                     <div>
-                        <h3 class="text-2xl px-5"><?php echo $rows["App_Name"]?></h3>
+                        <div class="flex">
+                            <h3 class="text-2xl px-5"><?php echo $rows["App_Name"]?></h3>
+                            <a href=<?php echo'scripts\deleteapp_script.php?ID='.$rows['App_ID']; ?> class="my-auto">
+                                <img src="img\Cancel_icon.svg" alt="HTML tutorial" class="w-8">
+                            </a>
+                        </div>
                         <hr class="mx-10 border-gray-800 my-3">
                         <p class="mx-5"><?php echo $rows["App_Date"]?></p>
                     </div>

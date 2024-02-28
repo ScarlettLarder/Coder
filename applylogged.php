@@ -13,7 +13,7 @@
             include("snippets/navbar.php")
         ?>
         <!-- Gets the name from the url sent, and echos it out for the user, for them to make sure its correct.  -->
-        <h3 class="text-5xl underline pt-9 pl-5"> Apply to: "<?php echo''.$_GET["ID"]?>"</h3>
+        <h3 class="text-5xl underline pt-9 pl-5"> Apply to: "<?php echo''.$_GET["Name"]?>"</h3>
         <br>
         <div class="pl-5">
             <form class="" action="scripts\apply_script.php" method="POST" name="form" onsubmit="return isValid();" >
@@ -24,7 +24,7 @@
                     //Setting up for the form, getting infomation to set as placeholders to help the user.
                     include("scripts/connection.php");
                     //Gets the name of the dojo from the url. 
-                    $id = $_GET["ID"];
+                    $id = $_GET["Name"];
                     $stmt = $conn->prepare("SELECT Dojo_Activities, Dojo_date, Dojo_name FROM dojos WHERE Dojo_Name = ?");
                     $stmt->bind_param("s", $id);
                     $stmt->execute(); 
@@ -66,25 +66,14 @@
                 <input type="submit" value="submit" name="submit" class="bg-pink-200 hover:bg-pink-100 px-4 py-1 rounded-lg text-1xl">
             </form>
             <script>
-                //Function that test the valid of the users inputs inside of the second part of the isValid function.
-                function typeValid(input){
-                    var inputValidation = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    return inputValidation.test(input);
-                }
                 //Function that validates the user inputs.
                 function isValid() {
-                    var user = document.form.name.value;
                     var app_reason = document.form.app_reason.value;
                     var Fav_1 = document.form.Fav_1.value;
                     var Fav_2 = document.form.Fav_2.value;
                     var Fav_3 = document.form.Fav_3.value;
-                    if(user === "" || app_reason === "" || Fav_1 === "" || Fav_2 === "" || Fav_3 === ""){
+                    if(app_reason === "" || Fav_1 === "" || Fav_2 === "" || Fav_3 === ""){
                         alert("Name, application reason, or favorites are empty.");
-                        return false;
-                    }
-                    //Uses the function earlier to send over each varible, checking the validity.
-                    if(!typeValid(user) || !typeValid(app_reason) || !typeValid(Fav_1) || !typeValid(Fav_2) || !typeValid(Fav_3)){
-                        alert("Invalid input in one of the fields.");
                         return false;
                     }
                     return true;
